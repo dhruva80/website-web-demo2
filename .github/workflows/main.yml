@@ -11,7 +11,7 @@ jobs:
 
     steps:
       - name: Checkout 
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2 # Updated to a newer version
 
       - name: Configure AWS CLI
         uses: aws-actions/configure-aws-credentials@v1
@@ -20,8 +20,11 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1 
 
-      - name: deploy site to s3
-        run: |aws s3 sync ./local-directory s3://your-bucket-name --delete
+      - name: Deploy to S3
+        run: |
+          aws s3 sync ./local-directory s3://your-bucket-name --delete
+
+      
           
 
         
