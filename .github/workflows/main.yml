@@ -3,31 +3,23 @@ name: web deployment
 on:
   push:
     branches:
-      - main # Change this if you're using a different branch
+      - main
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout 
-        uses: actions/checkout@v2 # Updated to a newer version
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-      - name: Configure AWS CLI
-        uses: aws-actions/configure-aws-credentials@v1
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-east-1 
+          aws-region: us-east-1
 
       - name: Deploy to S3
         run: |
-          aws s3 sync ./local-directory s3://your-bucket-name --delete
-
-      
-          
-
-        
-
-      
-
+          aws s3 sync . s3://dem01-demo5-demo3-web5 --delete
