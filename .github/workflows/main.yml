@@ -21,9 +21,8 @@ jobs:
           aws-region: us-east-1 
 
       - name: deploy site to s3
-        run: |
+        run: |aws s3 sync ./local-directory s3://your-bucket-name --delete
           
-          aws s3 sync s3://demo-demo3--delete
 
         
 
